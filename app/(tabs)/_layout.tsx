@@ -1,8 +1,10 @@
 import { Ionicons } from "@expo/vector-icons";
 import { Tabs } from "expo-router";
-
+import { useCart } from "../cart-context";
 
 export default function TabsLayout() {
+  const { itemCount } = useCart();
+
   return (
     <Tabs
       screenOptions={{
@@ -40,6 +42,8 @@ export default function TabsLayout() {
         name="cart"
         options={{
           title: "Cart",
+          tabBarBadge: itemCount > 0 ? itemCount : undefined,
+          tabBarBadgeStyle: { backgroundColor: "#EF4444" },
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="cart" size={size} color={color} />
           ),
@@ -54,7 +58,7 @@ export default function TabsLayout() {
           ),
         }}
       />
-     
+
       <Tabs.Screen
         name="profile"
         options={{
