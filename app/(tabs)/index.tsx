@@ -18,7 +18,7 @@ export default function HomeScreen() {
               <Ionicons name="search" size={20} color="#6B7280" />
               <TextInput
                 style={[styles.searchInput, { fontSize: 15 }]}
-                placeholder="Search items"
+                placeholder="Search items..."
                 placeholderTextColor="#9CA3AF"
                 value={search}
                 onChangeText={setSearch}
