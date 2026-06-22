@@ -1,5 +1,5 @@
 import { Ionicons } from "@expo/vector-icons";
-import { useRouter } from "expo-router";
+import { useRoute, useRouter } from "expo-router";
 import { useMemo, useState } from "react";
 import {
   Alert,
@@ -11,7 +11,7 @@ import {
   View,
   useWindowDimensions,
 } from "react-native";
-import { useCart } from "../cart-context";
+import { useCart } from "../context/cart-context";
 import { CATEGORIES, Category, PRODUCTS, Product } from "../products-data";
 
 type IconProps = {
@@ -32,11 +32,15 @@ const X = ({ size, color }: IconProps) => (
 const formatCurrency = (value: number) => `₱${value.toFixed(2)}`;
 
 export default function App() {
+  const router = useRouter();
+  const route = useRoute();
+  const initialSearchQuery = (route.params as any)?.searchQuery || '';
+  const filterType = (route.params as any)?.filter || '';
+  
   const [selectedCategoryId, setSelectedCategoryId] = useState("all");
-  const [searchQuery, setSearchQuery] = useState("");
+  const [searchQuery, setSearchQuery] = useState(initialSearchQuery);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const { addToCart } = useCart();
-  const router = useRouter();
   const { fontScale, width } = useWindowDimensions();
   const iconSize = 16 * fontScale;
 
@@ -50,9 +54,11 @@ export default function App() {
       const matchesSearch =
         product.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
         product.description.toLowerCase().includes(searchQuery.toLowerCase());
-      return matchesCategory && matchesSearch;
+      const matchesFilter =
+        !filterType || (product.tags && product.tags.includes(filterType));
+      return matchesCategory && matchesSearch && matchesFilter;
     });
-  }, [selectedCategoryId, searchQuery]);
+  }, [selectedCategoryId, searchQuery, filterType]);
 
   const handleAddToCart = (product: Product) => {
     if (product.stock === 0) {

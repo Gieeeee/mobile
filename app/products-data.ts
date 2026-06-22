@@ -12,6 +12,7 @@ export type Product = {
   rating: number;
   reviewCount: number;
   stock: number;
+  tags?: string[];
 };
 
 export const CATEGORIES: Category[] = [
@@ -31,6 +32,7 @@ export const PRODUCTS: Product[] = [
     rating: 4.8,
     reviewCount: 124,
     stock: 15,
+    tags: ["new-arrivals", "featured"],
   },
   {
     id: "p2",
@@ -41,6 +43,7 @@ export const PRODUCTS: Product[] = [
     rating: 4.2,
     reviewCount: 48,
     stock: 0,
+    tags: ["featured"],
   },
   {
     id: "p3",
@@ -51,6 +54,7 @@ export const PRODUCTS: Product[] = [
     rating: 4.6,
     reviewCount: 89,
     stock: 5,
+    tags: ["new-arrivals"],
   },
   {
     id: "p4",
@@ -61,6 +65,7 @@ export const PRODUCTS: Product[] = [
     rating: 4.9,
     reviewCount: 210,
     stock: 42,
+    tags: ["featured"],
   },
   {
     id: "p5",
@@ -71,6 +76,7 @@ export const PRODUCTS: Product[] = [
     rating: 4.7,
     reviewCount: 35,
     stock: 3,
+    tags: ["new-arrivals"],
   },
   {
     id: "p6",
@@ -81,5 +87,6 @@ export const PRODUCTS: Product[] = [
     rating: 5.0,
     reviewCount: 12,
     stock: 2,
+    tags: ["featured"],
   },
 ];

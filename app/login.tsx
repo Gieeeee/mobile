@@ -94,6 +94,10 @@ export default function Login() {
         <TouchableOpacity onPress={() => router.push("/register")}>
           <Text style={styles.link}>Don’t have an account? Register</Text>
         </TouchableOpacity>
+
+      </View>
+      <View style={styles.footer}>
+        <Text style={styles.footerText}>© 2026 HYGIENIX</Text>
       </View>
     </LinearGradient>
   );
@@ -145,5 +149,14 @@ const styles = StyleSheet.create({
     color: "#60a5fa",
     textAlign: "center",
     marginTop: 15,
+  },
+  footer: {
+    position: "absolute",
+    left: 16,
+    bottom: 10,
+  },
+  footerText: {
+    color: "#94a3b8",
+    fontSize: 14,
   },
 });

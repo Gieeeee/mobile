@@ -1,6 +1,6 @@
 import { Ionicons } from "@expo/vector-icons";
 import { Tabs } from "expo-router";
-import { useCart } from "../cart-context";
+import { useCart } from "../context/cart-context";
 
 export default function TabsLayout() {
   const { itemCount } = useCart();
